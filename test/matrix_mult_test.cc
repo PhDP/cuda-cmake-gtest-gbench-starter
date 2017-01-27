@@ -15,11 +15,11 @@ TEST(DeepgreenMatrixMult, NaiveMM) {
   // >>> np.matmul(a, b)
 
   auto a = deepgreen::matrix<float>(3, 4, {
-    8.0, 2.0, 7.0, 3.0, 5.0, 6.0, 0.0, 4.0, 10.0, 1.0, 9.0, 13.0
+    8.0f, 2.0f, 7.0f, 3.0f, 5.0f, 6.0f, 0.0f, 4.0f, 10.0f, 1.0f, 9.0f, 13.0f
   });
 
   auto b = deepgreen::matrix<float>(4, 4, {
-    5.0, 4.0, 3.0, 1.0, 8.0, 6.0, 7.0, 0.5, 0.0, 3.5, 2.4, 1.0, 6.6, 0.1, 9.5, 7.4
+    5.0f, 4.0f, 3.0f, 1.0f, 8.0f, 6.0f, 7.0f, 0.5f, 0.0f, 3.5f, 2.4f, 1.0f, 6.6f, 0.1f, 9.5f, 7.4f
   });
 
   auto c = deepgreen::naive_mm(a, b);
@@ -43,11 +43,11 @@ TEST(DeepgreenMatrixMult, CudaMM) {
   // >>> np.matmul(a, b)
 
   auto a = deepgreen::matrix<float>(3, 4, {
-    1.8, 2.0, 4.0, 7.0, 5.2, 1.2, 2.8, 4.7, 5.0, 3.0, 4.1, 8.0
+    1.8f, 2.0f, 4.0f, 7.0f, 5.2f, 1.2f, 2.8f, 4.7f, 5.0f, 3.0f, 4.1f, 8.0f
   });
 
   auto b = deepgreen::matrix<float>(4, 2, {
-    5.1, 4.6, 3.2, 1.9, 2.4, 6.1, 9.9, 8.0
+    5.1f, 4.6f, 3.2f, 1.9f, 2.4f, 6.1f, 9.9f, 8.0f
   });
 
   auto c = deepgreen::cuda_mm(a, b);

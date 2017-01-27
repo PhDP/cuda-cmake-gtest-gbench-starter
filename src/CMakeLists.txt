@@ -9,3 +9,6 @@ target_link_libraries(deepgreen
   ${CMAKE_THREAD_LIBS_INIT}
   ${MATH_LIBS}
 )
+
+install(TARGETS deepgreen LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+install(DIRECTORY ../include/deepgreen DESTINATION include)
