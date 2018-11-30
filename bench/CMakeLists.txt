@@ -7,11 +7,11 @@ set(bench_cc
   mm.cc
 )
 
-add_executable(deepgreen_benchmark ${bench_cc})
+add_executable(bench_deepgreen ${bench_cc})
 
-target_link_libraries(deepgreen_benchmark
+target_link_libraries(bench_deepgreen
   benchmark
-  deepgreen
+  ${DG_LIB_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
   ${MATH_LIBS}
 )

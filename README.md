@@ -33,8 +33,8 @@ On Linux/Unix, to build and make the test:
 
 By default, the makefiles will build the library, executable, tests, and benchmarks. The commands
 
-    $ ./test/deepgreen_tests
-    $ ./bench/deepgreen_benchmark
+    $ ./test/test_deepgreen
+    $ ./bench/bench_deepgreen
 
 ...will run the tests and benchmarks.
 

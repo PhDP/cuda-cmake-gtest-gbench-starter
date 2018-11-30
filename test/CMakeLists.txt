@@ -8,16 +8,16 @@ set(test_src
   matrix_mult_test.cc
 )
 
-add_executable(deepgreen_tests ${test_src})
+add_executable(test_deepgreen ${test_src})
 
-target_link_libraries(deepgreen_tests
+target_link_libraries(test_deepgreen
   gtest
-  deepgreen
+  ${DG_LIB_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
   ${MATH_LIBS}
 )
 
 add_test(
   NAME tests
-  COMMAND deepgreen_tests
+  COMMAND test_deepgreen
 )
