@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A cross-platform CUDA/C++14 starter project with google test and google benchmark support. [See
-this project](https://github.com/PhDP/cmake-gtest-gbench-starter) for a similar template with
+this project](https://github.com/PhDP/cmake-gtest-gbench-starter) for a similar template without
 CUDA support.
 
 This project template is using git submodule to include Google Benchmark and Google Test so you
@@ -19,7 +19,7 @@ or
 
 # Build
 
-CUDA is strict about compiler version, on UNIX, cmake will honor the CXX variable, so for example 
+CUDA is strict about compiler version, on UNIX, cmake will honor the CXX variable, so for example
 to use gcc 6 you can write (before calling cmake):
 
     $ export CC=gcc-6
