@@ -8,12 +8,12 @@ CUDA support.
 This project template is using git submodule to include Google Benchmark and Google Test so you
 need either to do
 
-    $ git clone --recursive git@github.com:PhDP/cmake-gtest-gbench-starter.git
+    $ git clone --recursive git@github.com:PhDP/cuda-cmake-gtest-gbench-starter.git
 
 or
 
-    $ git clone git@github.com:PhDP/cmake-gtest-gbench-starter.git
-    $ cd cmake-gtest-gbench-starter
+    $ git clone git@github.com:PhDP/cuda-cmake-gtest-gbench-starter.git
+    $ cd cuda-cmake-gtest-gbench-starter
     $ git submodule init
     $ git submodule update
 
