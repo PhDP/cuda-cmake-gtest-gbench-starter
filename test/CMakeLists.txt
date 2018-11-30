@@ -1,6 +1,6 @@
-add_library(gtest ./gtest/gtest-all.cc)
-include_directories(.)
-target_link_libraries(gtest ${CMAKE_THREAD_LIBS_INIT})
+add_subdirectory(gtest)
+
+include_directories(./gtest/googletest/include)
 
 set(test_src
   run_all.cc
