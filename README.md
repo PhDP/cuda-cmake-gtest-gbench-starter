@@ -19,17 +19,21 @@ or
 
 # Build
 
-CUDA is strict about compiler version, on UNIX, cmake will honor the CXX variable, so for example
-to use gcc 6 you can write (before calling cmake):
-
-    $ export CC=gcc-6
-    $ export CXX=g++-6
-
 On Linux/Unix, to build and make the test:
 
     $ mkdir build && cd $_
     $ cmake ..
     $ make
+
+CUDA is strict about compiler version, on UNIX, cmake will honor the CXX variable, so for example
+to use gcc 8 you can write (before calling cmake):
+
+    $ export CC=gcc-8
+    $ export CXX=g++-8
+
+or
+
+    $ CC=gcc-8 CXX=g++8 cmake ..
 
 By default, the makefiles will build the library, executable, tests, and benchmarks. The commands
 
