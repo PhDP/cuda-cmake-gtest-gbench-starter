@@ -13,5 +13,5 @@ target_link_libraries(bench_deepgreen
   benchmark
   ${DG_LIB_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
-  ${MATH_LIBS}
+  ${MATH_LIBRARIES}
 )
