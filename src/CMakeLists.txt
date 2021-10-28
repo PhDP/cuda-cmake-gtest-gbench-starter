@@ -7,7 +7,7 @@ cuda_add_library(${DG_LIB_NAME} ${DG_LIB_TYPE} ${deepgreen_src})
 target_link_libraries(${DG_LIB_NAME}
   ${CUDA_CUBLAS_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT}
-  ${MATH_LIBS}
+  ${MATH_LIBRARIES}
 )
 
 install(TARGETS ${DG_LIB_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
