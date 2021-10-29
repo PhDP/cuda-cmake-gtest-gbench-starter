@@ -33,7 +33,7 @@ to use gcc 8 you can write (before calling cmake):
 
 or
 
-    $ CC=gcc-8 CXX=g++8 cmake ..
+    $ CC=gcc-8 CXX=g++-8 cmake ..
 
 By default, the makefiles will build the library, executable, tests, and benchmarks. The commands
 
