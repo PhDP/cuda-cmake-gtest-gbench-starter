@@ -1,9 +1,10 @@
 # CUDA/C++14 cmake starter with google test and google benchmark
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A cross-platform CUDA/C++14 starter project with google test and google benchmark support. [See
-this project](https://github.com/PhDP/cmake-gtest-gbench-starter) for a similar template without
-CUDA support.
+A cross-platform CUDA/C++14 starter project with google test (1.12.1) and
+google benchmark (v1.7.1) support. [See this
+project](https://github.com/PhDP/cmake-gtest-gbench-starter) for a similar
+template without CUDA support.
 
 This project template is using git submodule to include Google Benchmark and Google Test so you
 need either to do
