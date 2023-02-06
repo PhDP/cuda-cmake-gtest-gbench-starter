@@ -6,11 +6,6 @@ google benchmark (v1.7.1) support. [See this
 project](https://github.com/PhDP/cmake-gtest-gbench-starter) for a similar
 template without CUDA support.
 
-This project template is using git submodule to include Google Benchmark and
-Google Test, you can clone everything with:
-
-    $ git clone --recursive git@github.com:PhDP/cuda-cmake-gtest-gbench-starter.git
-
 # Build
 
 On Linux/Unix, to build and make the test:
