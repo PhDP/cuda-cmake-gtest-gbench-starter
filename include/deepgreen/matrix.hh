@@ -163,7 +163,7 @@ class matrix {
     \brief Whether this is a row vector.
    */
   auto is_row_vec() const -> bool {
-    return m_rows = 1 && m_cols > 1;
+    return m_rows == 1 && m_cols > 1;
   }
 
   /**
