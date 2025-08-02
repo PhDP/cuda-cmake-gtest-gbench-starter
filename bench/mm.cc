@@ -8,7 +8,7 @@ static void BM_NaiveMatrixMult(benchmark::State& state) {
     auto x = deepgreen::matrix<float>(state.range(0), state.range(0), 1.5f);
     auto y = deepgreen::matrix<float>(state.range(0), state.range(0), 1.5f);
     state.ResumeTiming();
-    auto z = deepgreen::naive_mm(x, y);
+    benchmark::DoNotOptimize(deepgreen::naive_mm(x, y));
   }
 }
 BENCHMARK(BM_NaiveMatrixMult)

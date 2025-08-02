@@ -3,7 +3,7 @@ set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Suppressing benchmark's tests" FORC
 FetchContent_Declare(
   googlebenchmark
   GIT_REPOSITORY    https://github.com/google/benchmark.git
-  GIT_TAG           d572f4777349d43653b21d6c2fc63020ab326db2 # version 1.7.1
+  GIT_TAG           eddb0241389718a23a42db6af5f0164b6e0139af # version 1.9.4
 )
 
 FetchContent_MakeAvailable(
