@@ -1,14 +1,16 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.25)
 project(deepgreen
   DESCRIPTION "Simple template for C++/CUDA projects."
   HOMEPAGE_URL "https://github.com/PhDP/cuda-cmake-gtest-gbench-starter"
   LANGUAGES C CXX CUDA
 )
 
-# Set build type to RELEASE by default:
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Set build type to Release by default:
 if (NOT CMAKE_BUILD_TYPE)
-  message(STATUS "No build type provided, default to RELEASE.")
-  set(CMAKE_BUILD_TYPE "RELEASE")
+  message(STATUS "No build type provided, default to Release.")
+  set(CMAKE_BUILD_TYPE "Release")
 endif ()
 
 option(DG_TEST        "Enables testing with Google Test." ON)
@@ -26,20 +28,18 @@ endif ()
 
 include(FetchContent)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-
 find_package(CUDAToolkit REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Boost CONFIG REQUIRED)
-find_package(MATH)
 
-include_directories(. include ${Boost_INCLUDE_DIRS} ${CUDAToolkit_INCLUDE_DIRS})
-
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_STANDARD 20)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
 if (DG_SANITIZE)
-  set(CMAKE_CXX_FLAGS "-fsanitize=address -fsanitize=undefined ${CMAKE_CXX_FLAGS}")
+  add_compile_options(-fsanitize=address,undefined)
+  add_link_options(-fsanitize=address,undefined)
 endif ()
 
 add_subdirectory(src)
@@ -69,4 +69,3 @@ message(STATUS "  Build tests          : ${DG_TEST}")
 message(STATUS "  Build benchmarks     : ${DG_BENCH}")
 message(STATUS "  Add sanitize flags   : ${DG_SANITIZE}")
 message(STATUS "")
-
