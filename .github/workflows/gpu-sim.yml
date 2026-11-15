@@ -1,0 +1,70 @@
+name: GPU Simulator
+
+# Optional, non-required check. The hosted runners have no GPU, so this builds
+# the library and runs the gtest suite on a simulated NVIDIA H100
+# (https://github.com/pantheongpu/pantheonsim). A simulator cannot reproduce
+# hardware-specific behavior or timing, so it complements real-GPU testing and
+# does not replace it.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/**"
+      - "include/**"
+      - "test/**"
+      - "CMakeLists.txt"
+      - ".github/workflows/gpu-sim.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests (CUDA 13.0 and simulated H100)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Set up the simulated GPU and CUDA toolkit
+        uses: pantheongpu/setup-pantheonsim@656f502ef4782d94d34d8ddd368e333960609639 # v0.1.8
+        with:
+          gpu: nvidia/h100
+          cuda-toolkit: "13.0"
+
+      - name: Install Boost headers
+        run: sudo apt-get install -y --no-install-recommends libboost-dev
+
+      # src/CMakeLists.txt sets CUDA_ARCHITECTURES to native, which needs a
+      # GPU at configure time. Use the architecture given on the command line
+      # instead: 90-virtual embeds PTX only, which the simulator runs. The
+      # simulator also needs a shared CUDA runtime (the library is shared).
+      - name: Configure
+        run: |
+          sed -i 's/CUDA_ARCHITECTURES native/CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES}/' src/CMakeLists.txt
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCUDAToolkit_ROOT=/usr/local/cuda-13.0 \
+            -DCMAKE_CUDA_ARCHITECTURES=90-virtual \
+            -DCMAKE_CUDA_RUNTIME_LIBRARY=Shared \
+            -DDG_BENCH=OFF
+
+      - name: Build
+        run: cmake --build build -j3
+
+      # Fail if the simulated device was not found or a test was skipped.
+      - name: Test
+        run: |
+          vgpu run ctest --test-dir build --output-on-failure --no-tests=error -V 2>&1 | tee test.log
+          grep -q 'virtual GPU platform initialized: 1 x nvidia/h100' test.log
+          ! grep -q 'SKIPPED' test.log
+          grep -q '\[  PASSED  \] 6 tests' test.log
